@@ -1,2 +1,2 @@
 # Python_misc
-Some code for reference and LeetCode problems 
+Some code for reference, and LeetCode problems. 
