@@ -1,19 +1,19 @@
-def fib_rec(n, memo=None):
-    if not memo: memo = [0, 1]
-    # fib number already cached
-    if n < len(memo): return memo[n]
-    else:
-        f = fib_rec(n-2, memo) + fib_rec(n-1, memo)
-        memo.append(f)
-        return f
+"""
+The Fibonacci numbers, commonly denoted F(n) form a sequence, called the Fibonacci sequence, such that each number is the sum of the two preceding ones, starting from 0 and 1.
+"""
 
-def fib(n):
-    if n in [0, 1]: return n
-    prevprev, prev = 0, 1
-    for i in xrange(n-1):
-        f = prevprev + prev
-        prevprev, prev = prev, f
-    return f
+class Solution:
+    def fib(self, N: int) -> int:
+        if N == 0:
+            return 0
+        elif N == 1:
+            # to be able to slice results[-2:], start should be at F(2)
+            return 1
 
-print fib(8), fib_rec(8)
-print fib(1), fib_rec(1)
+        results = [0, 1]        # at this point N = 2 or higher
+
+        for i in range(1, N):
+            # add sum of last 2 numbers to results {fib(n-1) + fib(n-2)}
+            results.append(sum(results[-2:]))
+
+        return results[-1]      # return last result from the list
